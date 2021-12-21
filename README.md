@@ -54,19 +54,19 @@ The default username is "guest" and the default password is "guest".
 
 ## Set up the Umbraco Site
 
-### Ensure we have the latest Umbraco templates
-    dotnet new -i Umbraco.Templates
-
 ### Create solution/project
     dotnet new globaljson --sdk-version 5.0.404
     dotnet new sln --name UmbDockPi
 
+### Ensure we have the latest Umbraco templates
+    dotnet new -i Umbraco.Templates
+
 ### Add the Umbraco Project
 
-    dotnet new umbraco -n UmbDockPi --friendly-name "Admin User" --email "admin@admin.com" --password "Pa55word!!" --connection-string "Server=db-container;Database=umbraco;User Id=sa;Password=SQL_password123;"
+    dotnet new umbraco -n UmbDockPi --friendly-name "Admin User" --email "admin@admin.com" --password "Pa55word!!" --connection-string "Server=[ServerIpAddress];Database=umbracoDb;User Id=sa;Password=SQL_password123;"
     dotnet sln add UmbDockPi
     dotnet add UmbDockPi package Portfolio
-    dotnet add package Newtonsoft.Json
+    dotnet add UmbDockPi package Newtonsoft.Json
 
 ### Modify csProj
 
@@ -80,3 +80,22 @@ Edit the csproj file to change following element:
 
 Without this step, the project won't compile on Linux, but will compile in windows.
 
+### Run the site
+
+    dotnet run --project UmbDockPi
+
+## RabbitMQ Tester
+
+
+
+
+## References
+
+### Raspberry Pi Setup
+- https://pumpingco.de/blog/setup-your-raspberry-pi-for-docker-and-docker-compose/
+- https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo
+- https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl
+- https://cultiv.nl/blog/running-umbraco-9-on-your-raspberry-pi/
+
+### Umbraco
+- https://github.com/prjseal/Clean-Starter-Kit-for-Umbraco-v9
