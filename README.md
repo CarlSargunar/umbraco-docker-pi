@@ -9,7 +9,7 @@ Minimum Requirements :
 
 Recommended Requirements : 
 
-- A Raspberry Pi 4 8gb 
+- A Raspberry Pi 4 4gb or 8gb
 - an SSD drive to boot from
 
 # TODO Still
