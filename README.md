@@ -35,7 +35,7 @@ The RGL LED array is based on the Pimoroni Unicorn Hat HD.
 
 Run the following.
 
-    docker run -d --restart always --name sql_server -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -v mssqlsystem:/var/opt/mssql -v mssqluser:/var/opt/sqlserver -p 1433:1433 mcr.microsoft.com/azure-sql-edge
+    docker run -d --restart unless-stopped --name sql_server -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -v mssqlsystem:/var/opt/mssql -v mssqluser:/var/opt/sqlserver -p 1433:1433 mcr.microsoft.com/azure-sql-edge
 
 You will need to connect to your SQL server and create a database. I suggest using the excellent LinqPad tool, which can be downloaded [here](https://www.linqpad.net/).
 
@@ -51,7 +51,7 @@ Run the following.
 
 This will map port 15672 for the management web app and port 5672 for the message broker.
 
-    docker run -it -d --restart always -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+    docker run -it -d --restart unless-stopped -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 
 You can test the management web app by going to http://[Pi.IP.Add.ress]:15672 in your browser. You can also test the message broker by going to http://[Pi.IP.Add.ress]:5672 in your browser. Pi.IP.Add.ress is the IP address of your Pi.
 
@@ -101,9 +101,14 @@ Push the image to the repository
 
     docker push carlsargunar/umbraco-docker
 
-To run that image on a docker instance
+To run that image on a docker instance. Here we're passing the AspNet Environment as "Development"
 
-    docker run --name UmbracoDocker --restart always -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest 
+    docker run --name UmbracoDocker --restart unless-stopped -e ASPNETCORE_ENVIRONMENT=Development -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest 
+
+For Production Run
+
+    docker run --name UmbracoDocker --restart unless-stopped -e ASPNETCORE_ENVIRONMENT=Development -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest 
+
 
 
 ## Building with BuildX
