@@ -11,37 +11,12 @@ except ImportError:
 
 import unicornhathd
 
-
-print("""Unicorn HAT HD: Text
-
-This example shows how to draw, display and scroll text in a regular TrueType font on Unicorn HAT HD.
-
-It uses the Python Pillow/PIL image library, and all other drawing functions are available.
-
-See: http://pillow.readthedocs.io/en/3.1.x/reference/
-
-""")
-
 # ========== Change the text you want to display, and font, here ================
 
 TEXT = 'Hello World! How are you today? This is a real font!'
 
 FONT = ('/usr/share/fonts/truetype/freefont/FreeSansBold.ttf', 10)
 
-# Use `fc-list` to show a list of installed fonts on your system,
-# or `ls /usr/share/fonts/` and explore.
-
-# sudo apt install fonts-droid
-# FONT = ('/usr/share/fonts/truetype/droid/DroidSans.ttf', 12)
-
-# sudo apt install fonts-roboto
-# FONT = ('/usr/share/fonts/truetype/roboto/Roboto-Bold.ttf', 10)
-
-# ================ Now, let's draw some amazing rainbowy text! ===================
-
-# Get the width/height of Unicorn HAT HD.
-# These will normally be 16x16 but it's good practise not to hard-code such numbers,
-# just in case you want to try and hack together a bigger display later.
 width, height = unicornhathd.get_shape()
 
 unicornhathd.rotation(0)

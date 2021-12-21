@@ -1,18 +1,22 @@
 ﻿using RabbitMQ.Client;
 using System.Text;
 using Umbraco.Cms.Web.Common.Controllers;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace UmbDockPi.Controllers
 {
     public class RMQController : UmbracoApiController
     {
-        public RMQController()
+        private readonly ILogger<RMQController> _logger;
+        public RMQController(ILogger<RMQController> logger)
         {
-
+            _logger = logger;
         }
 
         public Microsoft.AspNetCore.Mvc.RedirectResult SendMessage(string name)
         {
+            _logger.LogInformation("SendMessage : " + name);
             try
             {
                 // TODO : Put the hostname in Config
@@ -35,10 +39,12 @@ namespace UmbDockPi.Controllers
                                          basicProperties: null,
                                          body: body);
                 }
+                _logger.LogInformation("SendMessage Completed");
+
             }
-            catch
+            catch (Exception ex)
             {
-                
+                _logger.LogError(ex, "SendMessage Error. {0}", ex.Message);
             }
 
             // Being Lazy :-)
