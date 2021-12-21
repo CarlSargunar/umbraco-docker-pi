@@ -84,11 +84,49 @@ Without this step, the project won't compile on Linux, but will compile in windo
 
     dotnet run --project UmbDockPi
 
+# Build the Docker Image
+
+To build the docker image for the umbraco site, you need to change to the UmbDockPi folder and run the following command. Replace my username with your docker Username. *Note : that last dot is important, as it gives the docker CLI the current context*
+
+**NOTE: You will need to build the docker image on the raspberry pi in order to be able to use it on the Pi since it is on the linux/Arm64 architecture, whereas your PC is most likely on x86, unless you're on an M1 Mac**
+
+    docker build -t carlsargunar/umbraco-docker .
+
+Push the image to the repository
+
+    docker push carlsargunar/umbraco-docker
+
+To run that image on a docker instance
+
+    docker run -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest -n UmbracoDocker
+
+
+## Building with BuildX
+
+BuildX is a new feature in Docker that allows you to build images with multiple build steps. For more info :
+
+- https://docs.docker.com/buildx/working-with-buildx/
+- https://github.com/docker/buildx/releases/tag/v0.7.1
+
+
+
+    docker buildx create --name mybuilder
+    docker buildx use mybuilder
+    docker buildx inspect --bootstrap
+    docker buildx build --platform linux/arm/v7 -t carlsargunar/umbraco-docker:latest .
+    docker buildx push --platform linux/arm/v7 carlsargunar/umbraco-docker:latest       
+
+
+# Additional Stuff
+
 ## RabbitMQ Tester
 
 The console apps rmqRx and rmqSend can be used to send and receive test messages.
 
 ## References
+
+### Docker
+- https://docs.docker.com/docker-hub/
 
 ### Raspberry Pi Setup
 - https://pumpingco.de/blog/setup-your-raspberry-pi-for-docker-and-docker-compose/
