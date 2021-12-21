@@ -103,11 +103,11 @@ Push the image to the repository
 
 To run that image on a docker instance. Here we're passing the AspNet Environment as "Development"
 
-    docker run --name UmbracoDocker --restart unless-stopped -e ASPNETCORE_ENVIRONMENT=Development -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest 
+    docker run --name UmbracoDocker --restart unless-stopped -e ASPNETCORE_ENVIRONMENT=Development -d -p 5080:80 carlsargunar/umbraco-docker:latest 
 
 For Production Run
 
-    docker run --name UmbracoDocker --restart unless-stopped -e ASPNETCORE_ENVIRONMENT=Production -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest 
+    docker run --name UmbracoDocker --restart unless-stopped -e ASPNETCORE_ENVIRONMENT=Production -d -p 5080:80 carlsargunar/umbraco-docker:latest 
 
 
 
