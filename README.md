@@ -21,9 +21,8 @@ Full setup for instructions to follow to set-up a Raspberry Pi for Umbraco on Do
 
 The RGL LED array is based on the Pimoroni Unicorn Hat HD.
 
-- You can buy one [here](- You can buy one [here](https://shop.pimoroni.com/products/unicorn-hat-hd).
-- There's a Git Repository associated with this project [here](https://github.com/pimoroni/unicorn-hat-hd).
-
+- You can buy one at [https://shop.pimoroni.com/products/unicorn-hat-hd](https://shop.pimoroni.com/products/unicorn-hat-hd).
+- There's a Git Repository associated with this project [https://github.com/pimoroni/unicorn-hat-hd](https://github.com/pimoroni/unicorn-hat-hd) with a lot of cool samples.
 
 # Set up Umbraco
 
@@ -48,4 +47,36 @@ Run the following.
 This will map port 15672 for the management web app and port 5672 for the message broker.
 
     docker run --rm -it -d -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+
+You can test the management web app by going to http://[Pi.IP.Add.ress]:15672 in your browser. You can also test the message broker by going to http://[Pi.IP.Add.ress]:5672 in your browser. Pi.IP.Add.ress is the IP address of your Pi.
+
+The default username is "guest" and the default password is "guest".
+
+## Set up the Umbraco Site
+
+### Ensure we have the latest Umbraco templates
+    dotnet new -i Umbraco.Templates
+
+### Create solution/project
+    dotnet new globaljson --sdk-version 5.0.404
+    dotnet new sln --name UmbDockPi
+
+### Add the Umbraco Project
+
+    dotnet new umbraco -n UmbDockPi --friendly-name "Admin User" --email "admin@admin.com" --password "Pa55word!!" --connection-string "Server=db-container;Database=umbraco;User Id=sa;Password=SQL_password123;"
+    dotnet sln add UmbDockPi
+    dotnet add UmbDockPi package Portfolio
+    dotnet add package Newtonsoft.Json
+
+### Modify csProj
+
+Edit the csproj file to change following element:
+
+    <!-- Force windows to use ICU. Otherwise Windows 10 2019H1+ will do it, but older windows 10 and most if not all winodws servers will run NLS -->
+    <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+        <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="68.2.0.9" />
+        <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2" />
+    </ItemGroup>
+
+Without this step, the project won't compile on Linux, but will compile in windows.
 
