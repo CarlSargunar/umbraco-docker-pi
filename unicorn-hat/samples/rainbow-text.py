@@ -26,7 +26,7 @@ See: http://pillow.readthedocs.io/en/3.1.x/reference/
 
 TEXT = 'Hello World! How are you today? This is a real font!'
 
-FONT = ('/usr/share/fonts/truetype/freefont/FreeSansBold.ttf', 12)
+FONT = ('/usr/share/fonts/truetype/freefont/FreeSansBold.ttf', 10)
 
 # Use `fc-list` to show a list of installed fonts on your system,
 # or `ls /usr/share/fonts/` and explore.
