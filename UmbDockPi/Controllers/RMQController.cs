@@ -21,7 +21,8 @@ namespace UmbDockPi.Controllers
             {
                 // TODO : Put the hostname in Config
                 // var factory = new ConnectionFactory() { HostName = "192.168.0.144" };
-                var factory = new ConnectionFactory() { HostName = "localhost" };
+                //var factory = new ConnectionFactory() { HostName = "localhost" };
+                var factory = new ConnectionFactory() { HostName = "rabbit_mq" };
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
