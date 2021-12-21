@@ -4,6 +4,8 @@ WORKDIR /src
 COPY ["UmbDockPi.csproj", "."]
 RUN dotnet restore "UmbDockPi.csproj"
 COPY . .
+ENV ASPNETCORE_ENVIRONMENT=Production
+
 RUN dotnet publish "UmbDockPi.csproj" -c Release -o /app/publish
 
 # Copy the published output to the final running image

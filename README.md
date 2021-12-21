@@ -103,7 +103,7 @@ Push the image to the repository
 
 To run that image on a docker instance
 
-    docker run -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest -n UmbracoDocker
+    docker run --name UmbracoDocker --restart always -d -p 5080:80 -p 5443:443 carlsargunar/umbraco-docker:latest 
 
 
 ## Building with BuildX
