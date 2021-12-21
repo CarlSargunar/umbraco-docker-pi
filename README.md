@@ -103,19 +103,7 @@ To run that image on a docker instance
 
 ## Building with BuildX
 
-BuildX is a new feature in Docker that allows you to build images with multiple build steps. For more info :
-
-- https://docs.docker.com/buildx/working-with-buildx/
-- https://github.com/docker/buildx/releases/tag/v0.7.1
-
-
-
-    docker buildx create --name mybuilder
-    docker buildx use mybuilder
-    docker buildx inspect --bootstrap
-    docker buildx build --platform linux/arm/v7 -t carlsargunar/umbraco-docker:latest .
-    docker buildx push --platform linux/arm/v7 carlsargunar/umbraco-docker:latest       
-
+BuildX is a new feature in Docker that allows you to build images with multiple build steps. Beyond the scope of this talk, you can find more information [here](https://docs.docker.com/engine/userguide/eng-dockerbuildx/).
 
 # Additional Stuff
 

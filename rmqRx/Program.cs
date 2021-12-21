@@ -9,7 +9,8 @@ namespace rmqRx
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            // Change this IP to the IP of your RabbitMQ server.
+            var factory = new ConnectionFactory() { HostName = "192.168.0.144" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {

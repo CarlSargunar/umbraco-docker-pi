@@ -6,6 +6,7 @@
 
     <ItemGroup>
         <PackageReference Include="Clean" Version="2.1.1" />
+        <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
         <PackageReference Include="Umbraco.Cms" Version="9.1.2" />
     </ItemGroup>
 

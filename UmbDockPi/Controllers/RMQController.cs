@@ -1,15 +1,19 @@
 ﻿using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System;
 using System.Text;
+using Umbraco.Cms.Web.Common.Controllers;
 
-namespace rmqSend
+namespace UmbDockPi.Controllers
 {
-    class Program
+    public class RMQController : UmbracoApiController
     {
-        static void Main(string[] args)
+        public RMQController()
         {
-            // Change this IP to the IP of your RabbitMQ server.
+
+        }
+
+        public Microsoft.AspNetCore.Mvc.RedirectResult SendMessage(string name)
+        {
+            // TODO : Put the hostname in Config
             var factory = new ConnectionFactory() { HostName = "192.168.0.144" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
@@ -20,18 +24,18 @@ namespace rmqSend
                                      autoDelete: false,
                                      arguments: null);
 
-                string message = "Hello World!";
+                string message = $"Hey {name}! Happy 24 Days of Umbraco. #h5yr!";
                 var body = Encoding.UTF8.GetBytes(message);
 
                 channel.BasicPublish(exchange: "",
                                      routingKey: "hello",
                                      basicProperties: null,
                                      body: body);
-                Console.WriteLine(" [x] Sent {0}", message);
             }
 
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
+            // Being Lazy :-)
+            return Redirect("/");
         }
+
     }
 }
