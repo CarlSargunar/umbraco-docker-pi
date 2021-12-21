@@ -14,7 +14,8 @@ namespace UmbDockPi.Controllers
         public Microsoft.AspNetCore.Mvc.RedirectResult SendMessage(string name)
         {
             // TODO : Put the hostname in Config
-            var factory = new ConnectionFactory() { HostName = "192.168.0.144" };
+            // var factory = new ConnectionFactory() { HostName = "192.168.0.144" };
+            var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {

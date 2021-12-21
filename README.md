@@ -12,6 +12,11 @@ Recommended Requirements :
 - A Raspberry Pi 4 8gb 
 - an SSD drive to boot from
 
+# TODO Still
+
+- Switch out the synchronous form post for an asynchronous one with a thank you page
+- Put the rMQ connection in config
+
 ## Setup Instructions
 
 Full setup for instructions to follow to set-up a Raspberry Pi for Umbraco on Docker can be found [here](instructions/setup-pi.md).
