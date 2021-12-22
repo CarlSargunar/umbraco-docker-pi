@@ -44,7 +44,7 @@ The RGL LED array is based on the Pimoroni Unicorn Hat HD.
 
     dotnet new umbraco -n UmbDockPi --friendly-name "Admin User" --email "admin@admin.com" --password "Pa55word!!" --connection-string "Server=[ServerIpAddress];Database=umbracoDb;User Id=sa;Password=SQL_password123;"
     dotnet sln add UmbDockPi
-    dotnet add UmbDockPi package Portfolio
+    dotnet add UmbDockPi package Clean
     dotnet add UmbDockPi package Newtonsoft.Json
 
 ### Modify csProj
