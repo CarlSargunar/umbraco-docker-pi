@@ -39,3 +39,10 @@ This step takes a little while.
 Boom! 🔥 It's done!
 
 
+## To Get a stable Raspberry Pi Image
+
+Browse to [http://downloads.raspberrypi.org/](http://downloads.raspberrypi.org/) and download the latest Buster 64 bit image. 
+
+The full URL is [http://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-05-28/2021-05-07-raspios-buster-arm64-lite.zip](http://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-05-28/2021-05-07-raspios-buster-arm64-lite.zip)
+
+To burn the image to a Pi you can use Balena Etcher, which can be downloaded here [https://balena.io/etcher/](https://balena.io/etcher/).
